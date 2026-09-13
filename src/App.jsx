@@ -39,9 +39,9 @@ const projects = [
 ]
 
 const domains = [
-  { icon: Cpu, code: '01 / COMPUTE', title: 'Close to the metal', text: 'I’m interested in computer architecture, GPU programming, performance, and what happens below the usual abstractions.' },
-  { icon: Orbit, code: '02 / AEROSPACE', title: 'Reliable systems', text: 'Aerospace is interesting to me because the software has to be observable, dependable, and useful under real constraints.' },
-  { icon: Zap, code: '03 / INTELLIGENCE', title: 'Practical AI', text: 'I like building the software around models: agent workflows, evaluations, data pipelines, and interfaces people can actually use.' },
+  { icon: Cpu, code: '01 / COMPUTE', title: 'Low-level systems', text: 'GPU programming, computer architecture, and performance.' },
+  { icon: Orbit, code: '02 / AEROSPACE', title: 'Reliable infrastructure', text: 'Mission software and systems that stay observable and dependable.' },
+  { icon: Zap, code: '03 / AI', title: 'Useful intelligence', text: 'Agent workflows, evaluations, and practical model-driven products.' },
 ]
 
 function App() {
@@ -88,12 +88,11 @@ function App() {
 
         <section className="section manifesto" id="about">
           <div className="container">
-            <div className="section-kicker" data-reveal><span>01</span> OPERATING PRINCIPLES</div>
+            <div className="section-kicker" data-reveal><span>01</span> ABOUT</div>
             <div className="manifesto-grid">
-              <h2 data-reveal>I like problems with<br /><em>real constraints.</em></h2>
+              <h2 data-reveal>I like working close<br />to the <em>system.</em></h2>
               <div className="manifesto-copy" data-reveal>
-                <p>The interesting work happens where abstractions meet reality: when latency matters, failure modes matter, and the system has to make sense under pressure.</p>
-                <p>I’m an EECS student at UC Berkeley, drawn to ambitious engineering across AI, aerospace, distributed infrastructure, and the hardware-software boundary.</p>
+                <p>I’m a Berkeley EECS student interested in software where performance, reliability, and careful engineering matter.</p>
               </div>
             </div>
             <div className="domain-grid">
