@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
-  ArrowDown, ArrowUpRight, BookOpen, Boxes, Braces, Cpu,
+  ArrowDown, ArrowUpRight, BookOpen, Cpu,
   Link, Mail, Menu, Orbit, X, Zap,
 } from 'lucide-react'
 
@@ -29,12 +29,12 @@ const projects = [
   {
     number: '01', title: 'Nexus', label: 'KNOWLEDGE GRAPH', date: 'JAN 2026', href: 'https://github.com/andrewyzhou/nexus',
     description: 'Our team cleaned and merged more than 7,800 company records into a PostgreSQL knowledge graph. I worked on the REST API, D3.js interface, and pipelines that filled in missing company relationships.',
-    impact: 'Cut manual data entry by 60%', stack: ['Python', 'PostgreSQL', 'D3.js', 'LLMs'], icon: Boxes,
+    impact: 'Cut manual data entry by 60%', stack: ['Python', 'PostgreSQL', 'D3.js', 'LLMs'],
   },
   {
     number: '02', title: 'Smart Sort', label: 'NEURAL ALGORITHMS', date: 'JUN 2025',
     description: 'Trained a PyTorch model to learn sorting behavior from synthetic arrays. I tested it against traditional sorting algorithms and built a small canvas demo to compare runtime and stability.',
-    impact: 'Tested across multiple data distributions', stack: ['PyTorch', 'JavaScript', 'Canvas', 'ML'], icon: Braces,
+    impact: 'Tested across multiple data distributions', stack: ['PyTorch', 'JavaScript', 'Canvas', 'ML'],
   },
 ]
 
@@ -47,7 +47,6 @@ const domains = [
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeExperience, setActiveExperience] = useState(0)
-  const heroRef = useRef(null)
 
   useEffect(() => {
     const nodes = document.querySelectorAll('[data-reveal]')
@@ -56,18 +55,6 @@ function App() {
     }), { threshold: 0.12 })
     nodes.forEach((node) => observer.observe(node))
     return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    const onMove = (event) => {
-      if (!heroRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-      const x = (event.clientX / window.innerWidth - 0.5) * 10
-      const y = (event.clientY / window.innerHeight - 0.5) * 8
-      heroRef.current.style.setProperty('--px', `${x}px`)
-      heroRef.current.style.setProperty('--py', `${y}px`)
-    }
-    window.addEventListener('pointermove', onMove)
-    return () => window.removeEventListener('pointermove', onMove)
   }, [])
 
   const closeMenu = () => setMenuOpen(false)
@@ -88,9 +75,7 @@ function App() {
       </header>
 
       <main>
-        <section className="hero" id="top" ref={heroRef}>
-          <div className="hero-image" aria-hidden="true" />
-          <div className="hero-grid" aria-hidden="true" />
+        <section className="hero" id="top">
           <div className="container hero-content">
             <div className="eyebrow"><span className="status-dot" /> UC Berkeley EECS · Berkeley, CA</div>
             <h1>I build software for<br /><em>complex systems.</em></h1>
@@ -99,18 +84,6 @@ function App() {
               <a className="button button-primary" href="#work">Explore my work <ArrowDown size={16} /></a>
               <a className="text-link" href="mailto:bobbycheema@berkeley.edu">bobbycheema@berkeley.edu <ArrowUpRight size={15} /></a>
             </div>
-          </div>
-          <div className="hero-readout" aria-hidden="true">
-            <span>SYS / PORTFOLIO</span><span>37.8715° N</span><span>122.2730° W</span>
-          </div>
-        </section>
-
-        <section className="signal-strip" aria-label="Areas of interest">
-          <div className="container signal-inner">
-            <div><small>01</small><span>AI SYSTEMS</span></div>
-            <div><small>02</small><span>GPU + LOW-LEVEL</span></div>
-            <div><small>03</small><span>AEROSPACE</span></div>
-            <div><small>04</small><span>INFRASTRUCTURE</span></div>
           </div>
         </section>
 
@@ -142,15 +115,9 @@ function App() {
               <p>A couple of projects I worked on outside of classes and internships.</p>
             </div>
             <div className="project-list">
-              {projects.map(({ number, title, label, date, href, description, impact, stack, icon: Icon }) => (
+              {projects.map(({ number, title, label, date, href, description, impact, stack }) => (
                 <article className="project-card" key={title} data-reveal>
-                  <div className="project-visual">
-                    <div className={`project-art art-${number}`}>
-                      <Icon size={42} strokeWidth={1} />
-                      <div className="project-orbits"><i /><i /><i /></div>
-                      <span>{number}</span>
-                    </div>
-                  </div>
+                  <span className="project-number">{number}</span>
                   <div className="project-info">
                     <div className="project-meta"><span className="project-label">{label}</span><span>{date}</span></div>
                     <h3>{title}</h3><p>{description}</p>
@@ -204,7 +171,6 @@ function App() {
         </section>
 
         <section className="contact" id="contact">
-          <div className="contact-grid" aria-hidden="true" />
           <div className="container contact-content" data-reveal>
             <span className="contact-label"><i /> OPEN TO AMBITIOUS PROBLEMS</span>
             <h2>Let’s build something<br /><em>that has to work.</em></h2>
