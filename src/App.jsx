@@ -46,7 +46,6 @@ const domains = [
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [activeExperience, setActiveExperience] = useState(0)
 
   useEffect(() => {
     const nodes = document.querySelectorAll('[data-reveal]')
@@ -77,9 +76,9 @@ function App() {
       <main>
         <section className="hero" id="top">
           <div className="container hero-content">
-            <div className="eyebrow"><span className="status-dot" /> UC Berkeley EECS · Berkeley, CA</div>
-            <h1>I build software for<br /><em>complex systems.</em></h1>
-            <p className="hero-copy">Software engineer exploring the edge of <strong>intelligence</strong>, <strong>infrastructure</strong>, and <strong>high-performance compute</strong>—from AI agents to mission operations.</p>
+            <div className="eyebrow">Bobby Cheema <span>·</span> UC Berkeley EECS</div>
+            <h1>Software engineer<br />building <em>dependable systems.</em></h1>
+            <p className="hero-copy">I’m interested in AI, aerospace, infrastructure, and low-level computing. I like understanding how complex systems work—and making them work better.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="#work">Explore my work <ArrowDown size={16} /></a>
               <a className="text-link" href="mailto:bobbycheema@berkeley.edu">bobbycheema@berkeley.edu <ArrowUpRight size={15} /></a>
@@ -137,21 +136,19 @@ function App() {
               <div><div className="section-kicker"><span>03</span> EXPERIENCE</div><h2>Built in the <em>real world.</em></h2></div>
               <p>From mission operations to model orchestration and spatial data systems.</p>
             </div>
-            <div className="experience-shell" data-reveal>
-              <div className="experience-tabs" role="tablist">
-                {experience.map((item, index) => (
-                  <button key={item.company} className={activeExperience === index ? 'active' : ''} onClick={() => setActiveExperience(index)} role="tab" aria-selected={activeExperience === index}>
-                    <span>{item.period}</span><strong>{item.company}</strong><small>{item.accent}</small>
-                  </button>
-                ))}
-              </div>
-              <article className="experience-detail" key={activeExperience}>
-                <div className="experience-meta"><span>{experience[activeExperience].accent}</span><span>{experience[activeExperience].place}</span></div>
-                <h3>{experience[activeExperience].role}</h3>
-                <h4>{experience[activeExperience].company} <i>/</i> {experience[activeExperience].team}</h4>
-                <p>{experience[activeExperience].summary}</p>
-                <ul>{experience[activeExperience].points.map(point => <li key={point}>{point}</li>)}</ul>
-              </article>
+            <div className="experience-list">
+              {experience.map((item) => (
+                <article className="experience-item" key={item.company} data-reveal>
+                  <div className="experience-date"><span>{item.period}</span><small>{item.place}</small></div>
+                  <div className="experience-copy">
+                    <span className="experience-accent">{item.accent}</span>
+                    <h3>{item.role}</h3>
+                    <h4>{item.company} <i>/</i> {item.team}</h4>
+                    <p>{item.summary}</p>
+                    <ul>{item.points.map(point => <li key={point}>{point}</li>)}</ul>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -172,9 +169,9 @@ function App() {
 
         <section className="contact" id="contact">
           <div className="container contact-content" data-reveal>
-            <span className="contact-label"><i /> OPEN TO AMBITIOUS PROBLEMS</span>
-            <h2>Let’s build something<br /><em>that has to work.</em></h2>
-            <p>I’m always interested in meeting people thinking seriously about AI, infrastructure, aerospace, and high-performance systems.</p>
+            <span className="contact-label">GET IN TOUCH</span>
+            <h2>Have something<br /><em>interesting in mind?</em></h2>
+            <p>I’m always happy to talk about software, research, projects, or opportunities.</p>
             <a className="button button-light" href="mailto:bobbycheema@berkeley.edu">Start a conversation <Mail size={17} /></a>
           </div>
         </section>
