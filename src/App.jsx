@@ -8,40 +8,40 @@ const experience = [
   {
     period: 'SUMMER 2026', role: 'Software Engineering Intern', company: 'NASA Ames Research Center',
     team: 'Multi-Mission Operations Center', place: 'Mountain View, CA', accent: 'ORBITAL INFRA',
-    summary: 'Building the observability layer for mission infrastructure—turning real-time health and performance signals from 50+ hosts and 300+ service checks into one operational view.',
+    summary: 'Built a monitoring dashboard for mission infrastructure that brought health and performance data from more than 50 hosts into one place.',
     points: ['Centralized monitoring across mission-critical infrastructure', 'Aggregation and alert pipelines for faster anomaly detection', 'Interactive views for uptime, latency, availability, and alert history'],
   },
   {
     period: 'FALL 2025', role: 'Software Engineering Intern', company: 'Second Foundation AI',
     team: 'Agentic Systems', place: 'San Francisco, CA', accent: 'INTELLIGENCE',
-    summary: 'Built an agentic AI workspace that orchestrates autonomous models through multi-step analysis and turns complex business questions into real-time, explorable answers.',
-    points: ['100+ automated insights generated per session', '35% lower end-to-end query latency', 'Evaluation pipelines measuring quality, reliability, and cost'],
+    summary: 'Worked on the software behind an agentic AI dashboard. I built parts of the multi-agent workflow, backend APIs, and interactive views used to run and inspect business analysis.',
+    points: ['Built task-planning and prompt pipelines with Python and FastAPI', 'Reduced end-to-end query latency by 35%', 'Added evaluations for latency, error rates, and output consistency'],
   },
   {
     period: 'SPRING 2026', role: 'Web Developer', company: 'Moffitt Status',
     team: 'ASUC · UC Berkeley', place: 'Berkeley, CA', accent: 'SPATIAL SYSTEMS',
-    summary: 'Developed a full-stack product for 1,000+ Berkeley students, transforming 2D library plans into fast, queryable 3D spaces for live seat availability.',
+    summary: 'Developed a full-stack site used by more than 1,000 Berkeley students to check library seat availability, including a pipeline that converted 2D floor plans into 3D spaces.',
     points: ['Near real-time availability data', '2D-to-3D spatial transformation pipeline', '30% faster model generation workflow'],
   },
 ]
 
 const projects = [
   {
-    number: '01', title: 'Nexus', label: 'KNOWLEDGE GRAPH',
-    description: 'A relationship intelligence engine built from 7,800+ fragmented company records. Nexus normalizes noisy data into a graph you can actually explore—and uses LLMs to uncover missing connections.',
-    impact: '60% less manual data entry', stack: ['Python', 'PostgreSQL', 'D3.js', 'LLMs'], icon: Boxes,
+    number: '01', title: 'Nexus', label: 'KNOWLEDGE GRAPH', date: 'JAN 2026', href: 'https://github.com/andrewyzhou/nexus',
+    description: 'Our team cleaned and merged more than 7,800 company records into a PostgreSQL knowledge graph. I worked on the REST API, D3.js interface, and pipelines that filled in missing company relationships.',
+    impact: 'Cut manual data entry by 60%', stack: ['Python', 'PostgreSQL', 'D3.js', 'LLMs'], icon: Boxes,
   },
   {
-    number: '02', title: 'Smart Sort', label: 'NEURAL ALGORITHMS',
-    description: 'An experiment in teaching a neural network to sort. I trained a PyTorch model, challenged it across distributions, and built a live canvas to compare learned behavior with classic algorithms.',
-    impact: 'From algorithm to learned behavior', stack: ['PyTorch', 'JavaScript', 'Canvas', 'ML'], icon: Braces,
+    number: '02', title: 'Smart Sort', label: 'NEURAL ALGORITHMS', date: 'JUN 2025',
+    description: 'Trained a PyTorch model to learn sorting behavior from synthetic arrays. I tested it against traditional sorting algorithms and built a small canvas demo to compare runtime and stability.',
+    impact: 'Tested across multiple data distributions', stack: ['PyTorch', 'JavaScript', 'Canvas', 'ML'], icon: Braces,
   },
 ]
 
 const domains = [
-  { icon: Cpu, code: '01 / COMPUTE', title: 'Close to the metal', text: 'Computer architecture, GPU programming, performance, and the details hidden beneath abstractions.' },
-  { icon: Orbit, code: '02 / AEROSPACE', title: 'Systems that matter', text: 'Mission operations, resilient infrastructure, and software designed for high-consequence environments.' },
-  { icon: Zap, code: '03 / INTELLIGENCE', title: 'AI with a job to do', text: 'Agents, learned systems, and evaluation—not as demos, but as tools for reasoning through hard problems.' },
+  { icon: Cpu, code: '01 / COMPUTE', title: 'Close to the metal', text: 'I’m interested in computer architecture, GPU programming, performance, and what happens below the usual abstractions.' },
+  { icon: Orbit, code: '02 / AEROSPACE', title: 'Reliable systems', text: 'Aerospace is interesting to me because the software has to be observable, dependable, and useful under real constraints.' },
+  { icon: Zap, code: '03 / INTELLIGENCE', title: 'Practical AI', text: 'I like building the software around models: agent workflows, evaluations, data pipelines, and interfaces people can actually use.' },
 ]
 
 function App() {
@@ -107,7 +107,10 @@ function App() {
 
         <section className="signal-strip" aria-label="Areas of interest">
           <div className="container signal-inner">
-            <span>AI SYSTEMS</span><i /><span>GPU + LOW-LEVEL</span><i /><span>AEROSPACE</span><i /><span>INFRASTRUCTURE</span><i /><span>HARD PROBLEMS</span>
+            <div><small>01</small><span>AI SYSTEMS</span></div>
+            <div><small>02</small><span>GPU + LOW-LEVEL</span></div>
+            <div><small>03</small><span>AEROSPACE</span></div>
+            <div><small>04</small><span>INFRASTRUCTURE</span></div>
           </div>
         </section>
 
@@ -135,11 +138,11 @@ function App() {
         <section className="section projects" id="work">
           <div className="container">
             <div className="section-heading" data-reveal>
-              <div><div className="section-kicker"><span>02</span> SELECTED WORK</div><h2>Things I’ve <em>shipped.</em></h2></div>
-              <p>Products that turn messy information and unconventional ideas into useful systems.</p>
+              <div><div className="section-kicker"><span>02</span> SELECTED WORK</div><h2>Projects I’ve <em>built.</em></h2></div>
+              <p>A couple of projects I worked on outside of classes and internships.</p>
             </div>
             <div className="project-list">
-              {projects.map(({ number, title, label, description, impact, stack, icon: Icon }) => (
+              {projects.map(({ number, title, label, date, href, description, impact, stack, icon: Icon }) => (
                 <article className="project-card" key={title} data-reveal>
                   <div className="project-visual">
                     <div className={`project-art art-${number}`}>
@@ -149,10 +152,11 @@ function App() {
                     </div>
                   </div>
                   <div className="project-info">
-                    <span className="project-label">{label}</span>
+                    <div className="project-meta"><span className="project-label">{label}</span><span>{date}</span></div>
                     <h3>{title}</h3><p>{description}</p>
                     <div className="impact"><span>↗</span>{impact}</div>
                     <div className="stack">{stack.map(item => <span key={item}>{item}</span>)}</div>
+                    {href && <a className="project-link" href={href} target="_blank" rel="noreferrer">View on GitHub <ArrowUpRight size={15} /></a>}
                   </div>
                 </article>
               ))}
