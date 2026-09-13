@@ -16,4 +16,8 @@ npm run build
 npm run preview
 ```
 
-The production site is emitted to `dist/` and can be deployed to Vercel, Netlify, GitHub Pages, or any static host.
+The production site is emitted to `dist/`.
+
+## Deploying to Vercel
+
+Import the GitHub repository into Vercel. The included `vercel.json` selects the Vite framework, runs `npm run build`, and publishes `dist/`. New pushes to `main` will deploy automatically once the repository is connected.
